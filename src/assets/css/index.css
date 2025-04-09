@@ -1,1 +1,9 @@
 @import 'tailwindcss';
+
+body {
+  font-size: 18px;
+}
+
+#app {
+  @apply min-h-screen bg-[#EFF1F4];
+}
