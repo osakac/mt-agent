@@ -1,7 +1,9 @@
 @import 'tailwindcss';
+@import 'primeicons/primeicons.css';
 
 body {
   font-size: 18px;
+  color: black;
 }
 
 #app {
