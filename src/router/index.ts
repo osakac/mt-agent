@@ -3,7 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 export enum RouteNames {
   Login = 'login',
   Register = 'register',
-  Home = 'home',
+  Cabinet = 'cabinet',
 }
 
 const router = createRouter({
@@ -18,6 +18,11 @@ const router = createRouter({
       path: '/register',
       name: RouteNames.Register,
       component: () => import('@/pages/register/RegisterPage.vue'),
+    },
+    {
+      path: '/cabinet',
+      name: RouteNames.Cabinet,
+      component: () => import('@/pages/cabinet/CabinetPage.vue'),
     },
   ],
 })

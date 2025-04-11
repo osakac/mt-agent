@@ -15,24 +15,32 @@ export const AppTheme = definePreset(Aura, {
   },
   components: {
     button: {
-      colorScheme: {
-        light: {
-          root: {
-            borderRadius: BORDER_RADIUS,
-            label: {
-              fontWeight: 'bold',
-            },
-          },
-        },
+      root: {
+        borderRadius: BORDER_RADIUS,
       },
     },
     inputtext: {
-      colorScheme: {
-        light: {
-          root: {
-            borderRadius: BORDER_RADIUS,
-          },
-        },
+      root: {
+        borderRadius: BORDER_RADIUS,
+      },
+    },
+    card: {
+      root: {
+        borderRadius: BORDER_RADIUS,
+      },
+      body: {
+        padding: '0.5rem',
+      },
+    },
+    divider: {
+      horizontal: {
+        margin: '0',
+      },
+    },
+    tag: {
+      root: {
+        borderRadius: BORDER_RADIUS,
+        fontWeight: '500',
       },
     },
   },
