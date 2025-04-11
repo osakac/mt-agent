@@ -13,16 +13,25 @@ const router = createRouter({
       path: '/login',
       name: RouteNames.Login,
       component: () => import('@/pages/login/LoginPage.vue'),
+      meta: {
+        showNavigationPanel: false,
+      },
     },
     {
       path: '/register',
       name: RouteNames.Register,
       component: () => import('@/pages/register/RegisterPage.vue'),
+      meta: {
+        showNavigationPanel: false,
+      },
     },
     {
       path: '/cabinet',
       name: RouteNames.Cabinet,
       component: () => import('@/pages/cabinet/CabinetPage.vue'),
+      meta: {
+        showNavigationPanel: true,
+      },
     },
   ],
 })
