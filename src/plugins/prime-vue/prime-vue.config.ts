@@ -1,19 +1,10 @@
-import Aura from '@primeuix/themes/aura'
+import { AppTheme } from './app-theme'
 
 const PrimeVueConfig = {
   theme: {
-    preset: Aura,
-  },
-  pt: {
-    button: {
-      root: {
-        class: 'rounded-xl! text-white! text-lg! font-bold!',
-      },
-    },
-    inputtext: {
-      root: {
-        class: 'rounded-xl! text-lg! text-black! bg-white! border-none! w-full! hover:bg-black/10!',
-      },
+    preset: AppTheme,
+    options: {
+      darkModeSelector: false,
     },
   },
 }
