@@ -3,27 +3,44 @@
     <div>
       <h1 class="text-3xl text-center mb-10">MT Agent</h1>
 
-      <div class="w-full flex flex-col gap-2 mb-5">
-        <IconField>
-          <InputIcon class="pi pi-phone"></InputIcon>
-          <InputMask
-            id="phone"
-            v-model="phone"
-            mask="+7 (999) 999-99-99"
-            placeholder="Телефон"
-            fluid
-          />
-        </IconField>
-        <IconField>
-          <InputIcon class="pi pi-lock"></InputIcon>
-          <Password id="password" v-model="password" :feedback="false" placeholder="Пароль" fluid />
-        </IconField>
-      </div>
+      <Form v-slot="$form" :initialValues :resolver @submit="onFormSubmit" class="mb-2">
+        <div class="w-full flex flex-col gap-2 mb-5">
+          <div>
+            <IconField>
+              <InputIcon class="pi pi-phone"></InputIcon>
+              <InputMask
+                name="phone"
+                id="phone"
+                mask="+7 (999) 999-99-99"
+                placeholder="Телефон"
+                fluid
+              />
+            </IconField>
+            <Message v-if="$form.phone?.invalid" severity="error" size="small" variant="simple">
+              {{ $form.phone.error.message }}
+            </Message>
+          </div>
+          <div>
+            <IconField>
+              <InputIcon class="pi pi-lock"></InputIcon>
+              <Password
+                name="password"
+                id="password"
+                :feedback="false"
+                placeholder="Пароль"
+                fluid
+              />
+            </IconField>
+            <Message v-if="$form.password?.invalid" severity="error" size="small" variant="simple">
+              {{ $form.password.error.message }}
+            </Message>
+          </div>
+        </div>
+
+        <Button type="submit" severity="info" label="Войти" fluid></Button>
+      </Form>
 
       <div class="flex flex-col gap-2">
-        <RouterLink :to="RouteNames.Home">
-          <Button @click.prevent="handleLogin" severity="info" label="Войти" fluid></Button>
-        </RouterLink>
         <RouterLink :to="RouteNames.Register">
           <Button severity="success" label="Зарегистрироваться" fluid></Button>
         </RouterLink>
@@ -34,10 +51,25 @@
 
 <script setup lang="ts">
 import { RouteNames } from '@/router'
-import { ref } from 'vue'
+import { Form } from '@primevue/forms'
+import { yupResolver } from '@primevue/forms/resolvers/yup'
+import { shallowRef } from 'vue'
+import * as yup from 'yup'
 
-const phone = ref('')
-const password = ref('')
+const initialValues = shallowRef({
+  phone: '',
+  password: '',
+})
 
-const handleLogin = () => {}
+const resolver = yupResolver(
+  yup.object({
+    phone: yup.string().required('Обязательное поле'),
+    password: yup.string().required('Обязательное поле').min(6, 'Минимум 6 символов'),
+  }),
+)
+
+const onFormSubmit = ({ valid }: { valid: boolean }) => {
+  if (valid) console.log('ok')
+  else console.log('not ok')
+}
 </script>
