@@ -51,6 +51,7 @@
 
 <script setup lang="ts">
 import { RouteNames } from '@/router'
+import type { SubmitEventForm } from '@/types/prime-vue/prime-vue.types'
 import { Form } from '@primevue/forms'
 import { yupResolver } from '@primevue/forms/resolvers/yup'
 import { shallowRef } from 'vue'
@@ -68,8 +69,7 @@ const resolver = yupResolver(
   }),
 )
 
-const onFormSubmit = ({ valid }: { valid: boolean }) => {
-  if (valid) console.log('ok')
-  else console.log('not ok')
+const onFormSubmit = (form: SubmitEventForm) => {
+  if (!form.valid) return
 }
 </script>

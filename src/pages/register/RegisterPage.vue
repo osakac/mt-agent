@@ -10,24 +10,33 @@
 
       <div class="flex flex-col gap-2 mb-5">
         <div>
-          <InputMask name="phone" mask="+7 (999) 999-99-99" fluid placeholder="Телефон" />
+          <IconField>
+            <InputIcon class="pi pi-phone"></InputIcon>
+            <InputMask name="phone" mask="+7 (999) 999-99-99" fluid placeholder="Телефон" />
+          </IconField>
           <Message v-if="$form.phone?.invalid" severity="error" size="small" variant="simple">
             {{ $form.phone.error.message }}
           </Message>
         </div>
         <div>
-          <Password name="password" placeholder="Пароль" :feedback="false" fluid></Password>
+          <IconField>
+            <InputIcon class="pi pi-lock"></InputIcon>
+            <Password name="password" placeholder="Пароль" :feedback="false" fluid></Password>
+          </IconField>
           <Message v-if="$form.password?.invalid" severity="error" size="small" variant="simple">
             {{ $form.password.error.message }}
           </Message>
         </div>
         <div>
-          <Password
-            name="confirmPassword"
-            placeholder="Подтвердить пароль"
-            :feedback="false"
-            fluid
-          ></Password>
+          <IconField>
+            <InputIcon class="pi pi-lock"></InputIcon>
+            <Password
+              name="confirmPassword"
+              placeholder="Подтвердить пароль"
+              :feedback="false"
+              fluid
+            ></Password>
+          </IconField>
           <Message
             v-if="$form.confirmPassword?.invalid"
             severity="error"
@@ -47,6 +56,7 @@
 <script setup lang="ts">
 import PageTitle from '@/components/page-title/PageTitle.vue'
 import { RouteNames } from '@/router'
+import type { SubmitEventForm } from '@/types/prime-vue/prime-vue.types'
 import { yupResolver } from '@primevue/forms/resolvers/yup'
 import { shallowRef } from 'vue'
 import * as yup from 'yup'
@@ -68,8 +78,7 @@ const resolver = yupResolver(
   }),
 )
 
-const onFormSubmit = ({ valid }: { valid: boolean }) => {
-  if (valid) console.log('ok')
-  else console.log('not ok')
+const onFormSubmit = (form: SubmitEventForm) => {
+  if (!form.valid) return
 }
 </script>
