@@ -1,11 +1,10 @@
 @import 'tailwindcss';
 @import 'primeicons/primeicons.css';
 
-body {
+html {
   font-size: 18px;
-  color: black;
 }
 
-#app {
-  @apply min-h-screen bg-[#EFF1F4];
+body {
+  background: var(--p-surface-background);
 }
