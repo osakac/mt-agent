@@ -43,5 +43,11 @@ export const AppTheme = definePreset(Aura, {
         fontWeight: '500',
       },
     },
+    avatar: {
+      xl: {
+        width: '5rem',
+        height: '5rem',
+      },
+    },
   },
 })
