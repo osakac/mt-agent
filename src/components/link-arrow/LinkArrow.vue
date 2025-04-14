@@ -30,11 +30,11 @@ defineProps<Props>()
   }
 
   &:not(:first-child) {
-    @apply pt-1;
+    @apply pt-1.5;
   }
 
   &:not(:last-child) {
-    @apply pb-1;
+    @apply pb-1.5;
   }
 }
 </style>
