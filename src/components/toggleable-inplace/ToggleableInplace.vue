@@ -71,6 +71,6 @@ const onSubmit = (form: SubmitEventForm) => {
 @reference 'tailwindcss';
 
 .toggle-btn {
-  @apply absolute top-1/2 right-0 -translate-y-1/2 text-sky-500 cursor-pointer;
+  @apply absolute top-1/2 right-0 -translate-y-1/2 text-sky-500;
 }
 </style>
