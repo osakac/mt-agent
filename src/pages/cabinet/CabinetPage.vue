@@ -12,6 +12,7 @@
             <Tag
               :severity="isVerified ? 'success' : 'danger'"
               :value="isVerified ? 'Верифицирован' : 'Не верифицирован'"
+              @click.prevent="isVerified = !isVerified"
               class="w-fit"
             />
           </div>
