@@ -55,7 +55,10 @@ import type { SubmitEventForm } from '@/types/prime-vue/prime-vue.types'
 import { Form } from '@primevue/forms'
 import { yupResolver } from '@primevue/forms/resolvers/yup'
 import { shallowRef } from 'vue'
+import { useRouter } from 'vue-router'
 import * as yup from 'yup'
+
+const router = useRouter()
 
 const initialValues = shallowRef({
   phone: '',
@@ -71,5 +74,7 @@ const resolver = yupResolver(
 
 const onFormSubmit = (form: SubmitEventForm) => {
   if (!form.valid) return
+
+  router.replace(RouteNames.Cabinet)
 }
 </script>
