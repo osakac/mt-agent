@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed bottom-0 left-0 right-0 px-3 py-2 bg-white border-t border-gray-200">
+  <div class="sticky bottom-0 left-0 right-0 px-3 py-2 bg-white border-t border-gray-200">
     <nav class="max-w-3xl mx-auto">
       <ul class="flex justify-between">
         <li>

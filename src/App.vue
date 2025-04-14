@@ -1,9 +1,11 @@
 <template>
-  <main class="mx-auto max-w-5xl py-5 px-3 h-screen">
-    <router-view></router-view>
-  </main>
+  <div class="min-h-screen flex flex-col">
+    <main class="mx-auto max-w-5xl w-full py-5 px-3 flex flex-grow">
+      <router-view></router-view>
+    </main>
 
-  <AppMenu v-if="isShowNav" />
+    <AppMenu v-if="isShowNav" />
+  </div>
 </template>
 
 <script setup lang="ts">
