@@ -1,59 +1,63 @@
 <template>
   <PageTitle title="Кабинет" />
 
-  <Card class="mb-10">
-    <template #content>
-      <LinkArrow :to="RouteNames.Cabinet">
-        <div class="flex items-center gap-5">
-          <Avatar label="M" size="xlarge" shape="circle" />
+  <template v-if="user">
+    <Card class="mb-10">
+      <template #content>
+        <LinkArrow :to="RouteNames.Details">
+          <div class="flex items-center gap-5">
+            <Avatar :image="user.avatar" size="xlarge" shape="circle" />
 
-          <div class="inline-flex flex-col gap-1">
-            <h3 class="text-xl">+7 (999) 999-99-99</h3>
-            <Tag
-              :severity="isVerified ? 'success' : 'danger'"
-              :value="isVerified ? 'Верифицирован' : 'Не верифицирован'"
-              @click.prevent="isVerified = !isVerified"
-              class="w-fit"
-            />
+            <div class="inline-flex flex-col gap-1">
+              <h3 class="text-xl">{{ user.name }}</h3>
+              <Tag
+                :severity="user.isVerified ? 'success' : 'danger'"
+                :value="user.isVerified ? 'Верифицирован' : 'Не верифицирован'"
+                @click.prevent="user.isVerified = !user.isVerified"
+                class="w-fit"
+              />
+            </div>
           </div>
+        </LinkArrow>
+      </template>
+    </Card>
+
+    <Card>
+      <template #content>
+        <div class="flex flex-col">
+          <LinkArrow :to="RouteNames.Cabinet">
+            <div class="flex items-center gap-2">
+              <i class="pi pi-file mr-1" style="color: var(--p-sky-500)"></i>
+              <p>Данные</p>
+            </div>
+          </LinkArrow>
+          <Divider />
+          <LinkArrow :to="RouteNames.Cabinet">
+            <div class="flex items-center gap-2">
+              <i class="pi pi-key mr-1" style="color: var(--p-sky-500)"></i>
+              <p>Сменить пароль</p>
+            </div>
+          </LinkArrow>
+          <Divider />
+          <LinkArrow :to="RouteNames.Cabinet">
+            <div class="flex items-center gap-2">
+              <i class="pi pi-sign-out mr-1" style="color: var(--p-sky-500)"></i>
+              <p>Выход из системы</p>
+            </div>
+          </LinkArrow>
         </div>
-      </LinkArrow>
-    </template>
-  </Card>
-
-  <Card>
-    <template #content>
-      <div class="flex flex-col">
-        <LinkArrow :to="RouteNames.Cabinet">
-          <div class="flex items-center gap-2">
-            <i class="pi pi-file mr-1" style="color: var(--p-sky-500)"></i>
-            <p>Данные</p>
-          </div>
-        </LinkArrow>
-        <Divider />
-        <LinkArrow :to="RouteNames.Cabinet">
-          <div class="flex items-center gap-2">
-            <i class="pi pi-key mr-1" style="color: var(--p-sky-500)"></i>
-            <p>Сменить пароль</p>
-          </div>
-        </LinkArrow>
-        <Divider />
-        <LinkArrow :to="RouteNames.Cabinet">
-          <div class="flex items-center gap-2">
-            <i class="pi pi-sign-out mr-1" style="color: var(--p-sky-500)"></i>
-            <p>Выход из системы</p>
-          </div>
-        </LinkArrow>
-      </div>
-    </template>
-  </Card>
+      </template>
+    </Card>
+  </template>
 </template>
 
 <script setup lang="ts">
 import LinkArrow from '@/components/link-arrow/LinkArrow.vue'
 import PageTitle from '@/components/page-title/PageTitle.vue'
 import { RouteNames } from '@/router'
-import { shallowRef } from 'vue'
+import { useUserStore } from '@/stores/user/user.store'
 
-const isVerified = shallowRef(false)
+const userStore = useUserStore()
+
+const user = userStore.getUser()
 </script>
