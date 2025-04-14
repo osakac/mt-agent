@@ -5,6 +5,7 @@ export enum RouteNames {
   Register = 'register',
   Cabinet = 'cabinet',
   Details = 'details',
+  Vacancies = 'vacancies',
 }
 
 const router = createRouter({
@@ -38,6 +39,14 @@ const router = createRouter({
       path: '/details',
       name: RouteNames.Details,
       component: () => import('@/pages/details/DetailsPage.vue'),
+      meta: {
+        showNavigationPanel: true,
+      },
+    },
+    {
+      path: '/vacancies',
+      name: RouteNames.Vacancies,
+      component: () => import('@/pages/vacancies/VacanciesPage.vue'),
       meta: {
         showNavigationPanel: true,
       },

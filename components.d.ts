@@ -10,6 +10,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     AppMenu: typeof import('./src/components/app-menu/AppMenu.vue')['default']
     Avatar: typeof import('primevue/avatar')['default']
+    Badge: typeof import('primevue/badge')['default']
     Button: typeof import('primevue/button')['default']
     Card: typeof import('primevue/card')['default']
     CardItem: typeof import('./src/components/card-items/CardItem.vue')['default']
@@ -29,5 +30,6 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     Tag: typeof import('primevue/tag')['default']
     ToggleableInplace: typeof import('./src/components/toggleable-inplace/ToggleableInplace.vue')['default']
+    VacancyItem: typeof import('./src/components/vacancy-item/VacancyItem.vue')['default']
   }
 }

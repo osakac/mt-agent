@@ -9,7 +9,7 @@
           </RouterLink>
         </li>
         <li>
-          <RouterLink to="/" class="menu-item">
+          <RouterLink :to="RouteNames.Vacancies" class="menu-item">
             <i class="pi pi-align-justify"></i>
             Вакансии
           </RouterLink>
