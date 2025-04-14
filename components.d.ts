@@ -12,12 +12,15 @@ declare module 'vue' {
     Avatar: typeof import('primevue/avatar')['default']
     Button: typeof import('primevue/button')['default']
     Card: typeof import('primevue/card')['default']
+    CardItem: typeof import('./src/components/card-items/CardItem.vue')['default']
+    CardItems: typeof import('./src/components/card-items/CardItems.vue')['default']
     Chip: typeof import('primevue/chip')['default']
     Divider: typeof import('primevue/divider')['default']
     Form: typeof import('@primevue/forms/form')['default']
     IconField: typeof import('primevue/iconfield')['default']
     InputIcon: typeof import('primevue/inputicon')['default']
     InputMask: typeof import('primevue/inputmask')['default']
+    InputText: typeof import('primevue/inputtext')['default']
     LinkArrow: typeof import('./src/components/link-arrow/LinkArrow.vue')['default']
     Message: typeof import('primevue/message')['default']
     PageTitle: typeof import('./src/components/page-title/PageTitle.vue')['default']
@@ -25,5 +28,6 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Tag: typeof import('primevue/tag')['default']
+    ToggleableInplace: typeof import('./src/components/toggleable-inplace/ToggleableInplace.vue')['default']
   }
 }
