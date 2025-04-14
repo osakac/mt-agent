@@ -1,11 +1,11 @@
 <template>
   <PageTitle title="Кабинет" />
 
-  <RouterLink to="/" class="block mb-10">
-    <Card>
-      <template #content>
+  <Card class="mb-10">
+    <template #content>
+      <LinkArrow :to="RouteNames.Cabinet">
         <div class="flex items-center gap-5">
-          <Avatar label="M" size="xlarge" />
+          <Avatar label="M" size="xlarge" shape="circle" />
 
           <div class="inline-flex flex-col gap-1">
             <h3 class="text-xl">+7 (999) 999-99-99</h3>
@@ -17,9 +17,9 @@
             />
           </div>
         </div>
-      </template>
-    </Card>
-  </RouterLink>
+      </LinkArrow>
+    </template>
+  </Card>
 
   <Card>
     <template #content>
