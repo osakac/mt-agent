@@ -36,7 +36,7 @@ const vacancies: Vacancy[] = [
     salary: 11_000,
     people: 3,
     date: '05.06.2025',
-    hot: true,
+    urgent: true,
   },
   {
     id: 2,
@@ -45,7 +45,7 @@ const vacancies: Vacancy[] = [
     salary: 26_000,
     people: 1,
     date: '05.06.2025',
-    hot: false,
+    urgent: false,
   },
   {
     id: 3,
@@ -54,7 +54,7 @@ const vacancies: Vacancy[] = [
     salary: 15_000,
     people: 2,
     date: '05.06.2025',
-    hot: true,
+    urgent: true,
   },
   {
     id: 4,
@@ -63,7 +63,7 @@ const vacancies: Vacancy[] = [
     salary: 8_000,
     people: 5,
     date: '05.06.2025',
-    hot: false,
+    urgent: false,
   },
 ]
 

@@ -20,7 +20,7 @@
                 </span>
                 / за человека
               </span>
-              <Badge v-if="vacancy.hot">
+              <Badge v-if="vacancy.urgent">
                 <i class="pi pi-thumbs-up"></i>
               </Badge>
             </div>

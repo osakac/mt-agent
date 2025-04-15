@@ -5,5 +5,5 @@ export interface Vacancy {
   salary: number
   people: number
   date: string
-  hot: boolean
+  urgent: boolean
 }
