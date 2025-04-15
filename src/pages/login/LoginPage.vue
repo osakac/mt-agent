@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col justify-center h-full max-w-[500px] w-full mx-auto">
+  <div class="flex flex-col flex-grow justify-center h-full max-w-[500px] w-full mx-auto">
     <div>
       <h1 class="text-3xl text-center mb-10">MT Agent</h1>
 
