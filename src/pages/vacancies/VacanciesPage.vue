@@ -7,11 +7,11 @@
   </IconField>
 
   <div class="flex justify-between items-center mb-5">
-    <button class="filter-btn">
+    <button @click="isDrawerVisible = true" class="filter-btn">
       <i class="pi pi-sort-alt"></i>
       По умолчанию
     </button>
-    <button>
+    <button class="filter-btn">
       <i class="pi pi-filter"></i>
       Фильтры
     </button>
@@ -20,13 +20,40 @@
   <ul>
     <VacancyItem v-for="vacancy in selectedVacancies" :key="vacancy.id" :vacancy />
   </ul>
+
+  <Drawer
+    v-model:visible="isDrawerVisible"
+    position="bottom"
+    :show-close-icon="false"
+    @click="isDrawerVisible = false"
+    class="max-w-5xl rounded-tl-lg rounded-tr-lg h-fit!"
+  >
+    <template #header>
+      <h4 class="font-semibold text-lg">Сначала показывать</h4>
+    </template>
+
+    <template #default>
+      <ul>
+        <li v-for="sortType in sortTypes" :key="sortType.value">
+          <button
+            @click="selectedSort = sortType.value"
+            class="sort-item"
+            :class="{ 'sort-item--active': selectedSort === sortType.value }"
+          >
+            {{ sortType.name }}
+            <i v-if="selectedSort === sortType.value" class="pi pi-check"></i>
+          </button>
+        </li>
+      </ul>
+    </template>
+  </Drawer>
 </template>
 
 <script setup lang="ts">
 import PageTitle from '@/components/page-title/PageTitle.vue'
 import VacancyItem from '@/components/vacancy-item/VacancyItem.vue'
 import type { Vacancy } from '@/types/vacancy/vacancy.types'
-import { computed, shallowRef } from 'vue'
+import { computed, ref } from 'vue'
 
 const vacancies: Vacancy[] = [
   {
@@ -67,10 +94,62 @@ const vacancies: Vacancy[] = [
   },
 ]
 
-const search = shallowRef('')
+const search = ref('')
 const selectedVacancies = computed(() =>
-  vacancies.filter((vacancy) => vacancy.title.toLowerCase().includes(search.value.toLowerCase())),
+  vacancies
+    .filter((vacancy) => vacancy.title.toLowerCase().includes(search.value.toLowerCase()))
+    .sort(sortByTypeFn),
 )
+
+const isDrawerVisible = ref(false)
+const sortTypes = [
+  {
+    name: 'По умолчанию',
+    value: 'default',
+  },
+  {
+    name: 'Наибольшее количество мест',
+    value: 'peopleDesc',
+  },
+  {
+    name: 'Наименьшее количество мест',
+    value: 'peopleAsc',
+  },
+  {
+    name: 'Срочные',
+    value: 'urgent',
+  },
+  {
+    name: 'Наибольшую выплату за человека',
+    value: 'salaryDesc',
+  },
+  {
+    name: 'Наименьшую выплату за человека',
+    value: 'salaryAsc',
+  },
+]
+const selectedSort = ref(sortTypes[0].value)
+const sortByTypeFn = (a: Vacancy, b: Vacancy) => {
+  switch (selectedSort.value) {
+    case 'default':
+      return 0
+    case 'peopleDesc':
+      return b.people - a.people
+    case 'peopleAsc':
+      return a.people - b.people
+    case 'urgent': {
+      if (a.urgent && !b.urgent) return -1
+      if (!a.urgent && b.urgent) return 1
+      return 0
+    }
+    case 'salaryDesc':
+      return b.salary - a.salary
+    case 'salaryAsc':
+      return a.salary - b.salary
+    default:
+      return 0
+  }
+}
 </script>
 
 <style scoped>
@@ -78,5 +157,13 @@ const selectedVacancies = computed(() =>
 
 .filter-btn {
   @apply flex items-center gap-2;
+}
+
+.sort-item {
+  @apply w-full flex justify-between items-center text-start py-2 hover:text-sky-500 transition-all duration-100 ease-in;
+}
+
+.sort-item--active {
+  @apply text-sky-500;
 }
 </style>

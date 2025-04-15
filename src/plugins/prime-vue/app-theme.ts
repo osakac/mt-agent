@@ -49,5 +49,13 @@ export const AppTheme = definePreset(Aura, {
         height: '5rem',
       },
     },
+    drawer: {
+      header: {
+        padding: '0.3rem 1.3rem',
+      },
+      content: {
+        padding: '0 1.3rem 1rem',
+      },
+    },
   },
 })
