@@ -39,7 +39,7 @@
             </div>
           </LinkArrow>
           <Divider />
-          <LinkArrow :to="RouteNames.Cabinet">
+          <LinkArrow :to="RouteNames.Cabinet" @click.prevent="onLogout">
             <div class="flex items-center gap-2">
               <i class="pi pi-sign-out mr-1" style="color: var(--p-sky-500)"></i>
               <p>Выход из системы</p>
@@ -56,8 +56,15 @@ import LinkArrow from '@/components/link-arrow/LinkArrow.vue'
 import PageTitle from '@/components/page-title/PageTitle.vue'
 import { RouteNames } from '@/router'
 import { useUserStore } from '@/stores/user/user.store'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const userStore = useUserStore()
 
 const user = userStore.getUser()
+
+const onLogout = () => {
+  router.push({ name: RouteNames.Login })
+  userStore.logout()
+}
 </script>

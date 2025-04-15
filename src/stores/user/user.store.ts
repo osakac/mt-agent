@@ -18,5 +18,7 @@ export const useUserStore = defineStore('user', () => {
     if (user.value) user.value[field] = newData
   }
 
-  return { getUser, updateUserData }
+  const logout = () => (user.value = null)
+
+  return { getUser, updateUserData, logout }
 })
