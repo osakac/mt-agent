@@ -3,12 +3,21 @@
     <PageTitle title="Регистрация" :to="RouteNames.Login" />
 
     <Form v-slot="$form" :initialValues :resolver @submit="onFormSubmit" class="flex flex-col">
-      <h3 class="text-3xl font-semibold text-center mb-2">Введите номер</h3>
+      <h3 class="text-3xl font-semibold text-center mb-2">Введите данные</h3>
       <p class="text-center text-lg/tight mb-7">
         Ваш номер телефона будет использоваться для входа в аккаунт
       </p>
 
       <div class="flex flex-col gap-2 mb-5">
+        <div>
+          <IconField>
+            <InputIcon class="pi pi-user"></InputIcon>
+            <InputText name="fio" fluid placeholder="ФИО" />
+          </IconField>
+          <Message v-if="$form.phone?.invalid" severity="error" size="small" variant="simple">
+            {{ $form.phone.error.message }}
+          </Message>
+        </div>
         <div>
           <IconField>
             <InputIcon class="pi pi-phone"></InputIcon>
@@ -62,6 +71,7 @@ import { shallowRef } from 'vue'
 import * as yup from 'yup'
 
 const initialValues = shallowRef({
+  fio: '',
   phone: '',
   password: '',
   confirmPassword: '',
@@ -69,6 +79,7 @@ const initialValues = shallowRef({
 
 const resolver = yupResolver(
   yup.object({
+    fio: yup.string().required('Обязательное поле'),
     phone: yup.string().required('Обязательное поле'),
     password: yup.string().required('Обязательное поле').min(6, 'Минимум 6 символов'),
     confirmPassword: yup
