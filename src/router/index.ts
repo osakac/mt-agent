@@ -13,6 +13,7 @@ const router = createRouter({
   routes: [
     {
       path: '/login',
+      alias: '/',
       name: RouteNames.Login,
       component: () => import('@/pages/login/LoginPage.vue'),
       meta: {
