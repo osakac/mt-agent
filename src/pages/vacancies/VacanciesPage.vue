@@ -9,7 +9,7 @@
   <div class="flex justify-between items-center mb-5">
     <button @click="isDrawerVisible = true" class="filter-btn">
       <i class="pi pi-sort-alt"></i>
-      По умолчанию
+      {{ selectedSort.name }}
     </button>
     <button class="filter-btn">
       <i class="pi pi-filter"></i>
@@ -26,26 +26,9 @@
     position="bottom"
     :show-close-icon="false"
     @click="isDrawerVisible = false"
-    class="max-w-5xl rounded-tl-lg rounded-tr-lg h-fit!"
+    class="max-w-5xl h-fit! rounded-t-lg"
   >
-    <template #header>
-      <h4 class="font-semibold text-lg">Сначала показывать</h4>
-    </template>
-
-    <template #default>
-      <ul>
-        <li v-for="sortType in sortTypes" :key="sortType.value">
-          <button
-            @click="selectedSort = sortType.value"
-            class="sort-item"
-            :class="{ 'sort-item--active': selectedSort === sortType.value }"
-          >
-            {{ sortType.name }}
-            <i v-if="selectedSort === sortType.value" class="pi pi-check"></i>
-          </button>
-        </li>
-      </ul>
-    </template>
+    <FilterSort :sort-types="sortTypes" v-model="selectedSort" />
   </Drawer>
 </template>
 
@@ -54,6 +37,7 @@ import PageTitle from '@/components/page-title/PageTitle.vue'
 import VacancyItem from '@/components/vacancy-item/VacancyItem.vue'
 import type { Vacancy } from '@/types/vacancy/vacancy.types'
 import { computed, ref } from 'vue'
+import FilterSort from './ui/filter-sort/FilterSort.vue'
 
 const vacancies: Vacancy[] = [
   {
@@ -128,9 +112,9 @@ const sortTypes = [
     value: 'salaryAsc',
   },
 ]
-const selectedSort = ref(sortTypes[0].value)
+const selectedSort = ref(sortTypes[0])
 const sortByTypeFn = (a: Vacancy, b: Vacancy) => {
-  switch (selectedSort.value) {
+  switch (selectedSort.value.value) {
     case 'default':
       return 0
     case 'peopleDesc':
@@ -157,13 +141,5 @@ const sortByTypeFn = (a: Vacancy, b: Vacancy) => {
 
 .filter-btn {
   @apply flex items-center gap-2;
-}
-
-.sort-item {
-  @apply w-full flex justify-between items-center text-start py-2 hover:text-sky-500 transition-all duration-100 ease-in;
-}
-
-.sort-item--active {
-  @apply text-sky-500;
 }
 </style>
