@@ -6,12 +6,12 @@
     <InputText v-model="search" placeholder="Поиск" fluid />
   </IconField>
 
-  <div class="flex justify-between items-center mb-5">
-    <button @click="isDrawerVisible = true" class="filter-btn">
+  <div class="flex max-[500px]:flex-col max-[500px]:gap-3 justify-between items-center mb-5">
+    <button @click="isSortingVisible = true" class="filter-btn">
       <i class="pi pi-sort-alt"></i>
       {{ selectedSort.name }}
     </button>
-    <button class="filter-btn">
+    <button @click="isVacancyFilterVisible = true" class="filter-btn">
       <i class="pi pi-filter"></i>
       Фильтры
     </button>
@@ -22,13 +22,23 @@
   </ul>
 
   <Drawer
-    v-model:visible="isDrawerVisible"
+    v-model:visible="isSortingVisible"
     position="bottom"
     :show-close-icon="false"
-    @click="isDrawerVisible = false"
+    @click="isSortingVisible = false"
     class="max-w-5xl h-fit! rounded-t-lg"
   >
     <FilterSort :sort-types="sortTypes" v-model="selectedSort" />
+  </Drawer>
+
+  <Drawer
+    v-model:visible="isVacancyFilterVisible"
+    position="bottom"
+    :show-close-icon="false"
+    @click.stop
+    class="max-w-5xl h-fit! rounded-t-lg"
+  >
+    <FilterVacancy @apply-filter="applyFilter" />
   </Drawer>
 </template>
 
@@ -38,6 +48,7 @@ import VacancyItem from '@/components/vacancy-item/VacancyItem.vue'
 import type { Vacancy } from '@/types/vacancy/vacancy.types'
 import { computed, ref } from 'vue'
 import FilterSort from './ui/filter-sort/FilterSort.vue'
+import FilterVacancy from './ui/filter-vacancy/FilterVacancy.vue'
 
 const vacancies: Vacancy[] = [
   {
@@ -85,7 +96,7 @@ const selectedVacancies = computed(() =>
     .sort(sortByTypeFn),
 )
 
-const isDrawerVisible = ref(false)
+const isSortingVisible = ref(false)
 const sortTypes = [
   {
     name: 'По умолчанию',
@@ -133,6 +144,12 @@ const sortByTypeFn = (a: Vacancy, b: Vacancy) => {
     default:
       return 0
   }
+}
+
+const isVacancyFilterVisible = ref(false)
+
+const applyFilter = () => {
+  isVacancyFilterVisible.value = false
 }
 </script>
 
