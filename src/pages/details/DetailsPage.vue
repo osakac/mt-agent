@@ -37,5 +37,5 @@ import { useUserStore } from '@/stores/user/user.store'
 
 const userStore = useUserStore()
 
-const user = userStore.getUser()
+const user = userStore.getUser
 </script>

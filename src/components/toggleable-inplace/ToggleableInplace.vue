@@ -24,7 +24,7 @@
 import { useUserStore } from '@/stores/user/user.store'
 import type { SubmitEventForm } from '@/types/prime-vue/prime-vue.types'
 import { yupResolver } from '@primevue/forms/resolvers/yup'
-import { computed, shallowRef } from 'vue'
+import { computed, ref } from 'vue'
 import * as yup from 'yup'
 
 interface Props {
@@ -32,16 +32,14 @@ interface Props {
   type: 'phone' | 'email'
 }
 
-const props = defineProps<Props>()
+const { value, type } = defineProps<Props>()
 const userStore = useUserStore()
 
-const isEditing = shallowRef(false)
+const isEditing = ref(false)
 
-const initialValues = shallowRef({
-  value: props.value,
-})
+const initialValues = computed(() => ({ value }))
 const resolver = computed(() => {
-  switch (props.type) {
+  switch (type) {
     case 'phone':
       return yupResolver(
         yup.object({
@@ -62,7 +60,7 @@ const resolver = computed(() => {
 const onSubmit = (form: SubmitEventForm) => {
   if (!form.valid) return
 
-  userStore.updateUserData(props.type, form.states.value.value)
+  userStore.updateUserData(type, form.states.value.value)
   isEditing.value = false
 }
 </script>

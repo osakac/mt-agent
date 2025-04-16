@@ -1,6 +1,6 @@
 import type { User } from '@/types/user/user.types'
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
 export const useUserStore = defineStore('user', () => {
   const user = ref<User | null>({
@@ -12,7 +12,7 @@ export const useUserStore = defineStore('user', () => {
     isVerified: false,
   })
 
-  const getUser = () => user.value
+  const getUser = computed(() => user.value)
 
   const updateUserData = (field: 'email' | 'phone', newData: string) => {
     if (user.value) user.value[field] = newData

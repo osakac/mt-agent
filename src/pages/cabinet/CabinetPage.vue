@@ -61,7 +61,7 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 const userStore = useUserStore()
 
-const user = userStore.getUser()
+const user = userStore.getUser
 
 const onLogout = () => {
   router.push({ name: RouteNames.Login })
