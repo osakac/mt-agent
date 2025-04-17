@@ -39,13 +39,13 @@
           <div>
             <IconField>
               <InputIcon>от</InputIcon>
-              <InputText fluid />
+              <InputNumber fluid />
             </IconField>
           </div>
           <div>
             <IconField>
               <InputIcon>до</InputIcon>
-              <InputText fluid />
+              <InputNumber fluid />
             </IconField>
           </div>
         </div>
@@ -57,13 +57,13 @@
           <div>
             <IconField>
               <InputIcon>от</InputIcon>
-              <InputText fluid />
+              <InputNumber fluid />
             </IconField>
           </div>
           <div>
             <IconField>
               <InputIcon>до</InputIcon>
-              <InputText fluid />
+              <InputNumber fluid />
             </IconField>
           </div>
         </div>
