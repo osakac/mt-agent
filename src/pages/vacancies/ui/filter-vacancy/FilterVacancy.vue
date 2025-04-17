@@ -5,31 +5,29 @@
     <div class="grid grid-cols-2 gap-2 mb-5">
       <div class="col-span-2">
         <label>Специальность</label>
-        <AutoComplete
+        <MultiSelect
           v-model="selectedSpecialties"
-          :suggestions="suggestionsSpecialties"
-          @complete="searchSpecialties($event.query)"
+          :options="specialties"
+          optionLabel="name"
+          display="chip"
           placeholder="Любая"
-          empty-search-message="Не найдено"
-          scroll-height="400px"
-          dropdown
+          filter
           fluid
-          multiple
+          :maxSelectedLabels="3"
         />
       </div>
 
       <div class="col-span-2">
         <label>Локация</label>
-        <AutoComplete
+        <MultiSelect
           v-model="selectedLocation"
-          :suggestions="suggestionsLocation"
-          @complete="searchLocation($event.query)"
+          :options="locations"
+          optionLabel="name"
+          display="chip"
           placeholder="Любая"
-          empty-search-message="Не найдено"
-          scroll-height="400px"
-          dropdown
+          filter
           fluid
-          multiple
+          :maxSelectedLabels="3"
         />
       </div>
 
@@ -83,46 +81,28 @@ interface Emits {
 
 const emit = defineEmits<Emits>()
 
-const specialties = shallowRef([
-  'Любая',
-  'Frontend',
-  'Backend',
-  'DevOps',
-  'Designer',
-  'QA',
-  'PM',
-  'HR',
-  'Legal',
-  'Sales',
-  'IT',
+const specialties = ref([
+  { name: 'Любая', value: 'any' },
+  { name: 'Frontend', value: 'frontend' },
+  { name: 'Backend', value: 'backend' },
+  { name: 'DevOps', value: 'devops' },
+  { name: 'Designer', value: 'designer' },
+  { name: 'UX/UI', value: 'uxui' },
 ])
-const suggestionsSpecialties = ref<string[]>([])
 const selectedSpecialties = ref<string[]>([])
-const searchSpecialties = (query: string) => {
-  suggestionsSpecialties.value = specialties.value.filter((s) =>
-    s.toLowerCase().startsWith(query.toLowerCase()),
-  )
-}
 
 const locations = shallowRef([
-  'Любая',
-  'Москва',
-  'Санкт-Петербург',
-  'Казань',
-  'Новосибирск',
-  'Екатеринбург',
-  'Нижний Новгород',
-  'Самара',
-  'Омск',
-  'Красноярск',
+  { name: 'Любая', value: 'any' },
+  { name: 'Москва', value: 'moscow' },
+  { name: 'Санкт-Петербург', value: 'spb' },
+  { name: 'Казань', value: 'kazan' },
+  { name: 'Нижний Новгород', value: 'nn' },
+  { name: 'Красноярск', value: 'krasnoyarsk' },
+  { name: 'Екатеринбург', value: 'ekb' },
+  { name: 'Новосибирск', value: 'nsk' },
+  { name: 'Пермь', value: 'perm' },
 ])
-const suggestionsLocation = ref<string[]>([])
 const selectedLocation = ref<string[] | null>(null)
-const searchLocation = (query: string) => {
-  suggestionsLocation.value = locations.value.filter((s) =>
-    s.toLowerCase().startsWith(query.toLowerCase()),
-  )
-}
 
 const applyFilter = () => {
   emit('applyFilter')

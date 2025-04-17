@@ -24,6 +24,7 @@ declare module 'vue' {
     InputText: typeof import('primevue/inputtext')['default']
     LinkArrow: typeof import('./src/components/link-arrow/LinkArrow.vue')['default']
     Message: typeof import('primevue/message')['default']
+    MultiSelect: typeof import('primevue/multiselect')['default']
     PageTitle: typeof import('./src/components/page-title/PageTitle.vue')['default']
     Password: typeof import('primevue/password')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
