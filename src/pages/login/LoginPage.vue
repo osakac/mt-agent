@@ -8,13 +8,7 @@
           <div>
             <IconField>
               <InputIcon class="pi pi-phone"></InputIcon>
-              <InputMask
-                name="phone"
-                id="phone"
-                mask="+7 (999) 999-99-99"
-                placeholder="Телефон"
-                fluid
-              />
+              <InputNumber name="phone" placeholder="Телефон" :useGrouping="false" fluid />
             </IconField>
             <Message v-if="$form.phone?.invalid" severity="error" size="small" variant="simple">
               {{ $form.phone.error.message }}
@@ -67,7 +61,7 @@ const initialValues = shallowRef({
 
 const resolver = yupResolver(
   yup.object({
-    phone: yup.string().required('Обязательное поле'),
+    phone: yup.string().required('Обязательное поле').min(11, 'Номер телефона из 11 символов'),
     password: yup.string().required('Обязательное поле').min(6, 'Минимум 6 символов'),
   }),
 )
