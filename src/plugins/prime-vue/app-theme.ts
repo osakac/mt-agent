@@ -57,5 +57,10 @@ export const AppTheme = definePreset(Aura, {
         padding: '0.5rem 1.3rem 1rem',
       },
     },
+    multiselect: {
+      root: {
+        borderRadius: BORDER_RADIUS,
+      },
+    },
   },
 })
