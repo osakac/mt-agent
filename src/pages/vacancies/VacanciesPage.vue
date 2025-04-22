@@ -22,9 +22,10 @@
     </button>
   </div>
 
-  <ul>
+  <ul v-if="selectedVacancies.length">
     <VacancyItem v-for="vacancy in selectedVacancies" :key="vacancy.id" :vacancy />
   </ul>
+  <h3 v-else class="text-center text-2xl italic pt-5">Не найдено</h3>
 
   <Drawer
     v-model:visible="isSortingVisible"
