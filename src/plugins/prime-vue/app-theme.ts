@@ -62,5 +62,15 @@ export const AppTheme = definePreset(Aura, {
         borderRadius: BORDER_RADIUS,
       },
     },
+    select: {
+      root: {
+        borderRadius: BORDER_RADIUS,
+      },
+    },
+    textarea: {
+      root: {
+        borderRadius: BORDER_RADIUS,
+      },
+    },
   },
 })

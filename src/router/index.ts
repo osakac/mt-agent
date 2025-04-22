@@ -6,6 +6,7 @@ export enum RouteNames {
   Cabinet = 'cabinet',
   Details = 'details',
   Vacancies = 'vacancies',
+  CreateVacancy = 'create-vacancy',
 }
 
 const router = createRouter({
@@ -48,6 +49,14 @@ const router = createRouter({
       path: '/vacancies',
       name: RouteNames.Vacancies,
       component: () => import('@/pages/vacancies/VacanciesPage.vue'),
+      meta: {
+        showNavigationPanel: true,
+      },
+    },
+    {
+      path: '/create-vacancy',
+      name: RouteNames.CreateVacancy,
+      component: () => import('@/pages/create-vacancy/CreateVacancyPage.vue'),
       meta: {
         showNavigationPanel: true,
       },

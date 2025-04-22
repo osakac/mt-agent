@@ -1,10 +1,15 @@
 <template>
   <PageTitle title="Вакансии" />
 
-  <IconField class="mb-3">
-    <InputIcon class="pi pi-search" />
-    <InputText v-model="search" placeholder="Поиск" fluid />
-  </IconField>
+  <div class="mb-3 flex max-[500px]:flex-col justify-between gap-3">
+    <IconField class="w-full">
+      <InputIcon class="pi pi-search" />
+      <InputText v-model="search" placeholder="Поиск" fluid />
+    </IconField>
+    <router-link :to="RouteNames.CreateVacancy">
+      <Button label="Создать вакансию" fluid class="whitespace-nowrap"></Button>
+    </router-link>
+  </div>
 
   <div class="flex max-[500px]:flex-col max-[500px]:gap-3 justify-between items-center mb-5">
     <button @click="isSortingVisible = true" class="filter-btn">
@@ -45,6 +50,7 @@
 <script setup lang="ts">
 import PageTitle from '@/components/page-title/PageTitle.vue'
 import VacancyItem from '@/components/vacancy-item/VacancyItem.vue'
+import { RouteNames } from '@/router'
 import type { Vacancy } from '@/types/vacancy/vacancy.types'
 import { computed, ref } from 'vue'
 import FilterSort from './ui/filter-sort/FilterSort.vue'

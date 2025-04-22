@@ -29,7 +29,9 @@ declare module 'vue' {
     Password: typeof import('primevue/password')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Select: typeof import('primevue/select')['default']
     Tag: typeof import('primevue/tag')['default']
+    Textarea: typeof import('primevue/textarea')['default']
     ToggleableInplace: typeof import('./src/components/toggleable-inplace/ToggleableInplace.vue')['default']
     VacancyItem: typeof import('./src/components/vacancy-item/VacancyItem.vue')['default']
   }
