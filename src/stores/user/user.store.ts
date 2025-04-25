@@ -8,7 +8,7 @@ export const useUserStore = defineStore('user', () => {
     name: 'John Doe',
     email: 'bond007q@example.com',
     avatar: 'https://cdn0.iconfinder.com/data/icons/team-work-and-organization-2/128/78-1024.png',
-    phone: '+7 (555) 999-99-99',
+    phone: '89828662848',
     isVerified: false,
   })
 

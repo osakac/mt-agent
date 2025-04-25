@@ -5,7 +5,7 @@
     <Form v-else :initialValues :resolver @submit="onSubmit">
       <IconField v-if="type === 'phone'">
         <InputIcon class="pi pi-phone" />
-        <InputMask name="value" mask="+7 (999) 999-99-99" placeholder="Телефон" />
+        <InputNumber name="value" placeholder="Телефон" :useGrouping="false" />
       </IconField>
 
       <IconField v-else-if="type === 'email'">
@@ -13,10 +13,14 @@
         <InputText name="value" placeholder="Почта" />
       </IconField>
 
-      <button v-if="isEditing" type="submit" class="toggle-btn">сохранить</button>
+      <button v-if="isEditing" type="submit" class="toggle-btn">
+        <i class="pi pi-check"></i>
+      </button>
     </Form>
 
-    <button v-if="!isEditing" @click="isEditing = true" class="toggle-btn">изменить</button>
+    <button v-if="!isEditing" @click="isEditing = true" class="toggle-btn">
+      <i class="pi pi-pencil"></i>
+    </button>
   </div>
 </template>
 
@@ -43,7 +47,7 @@ const resolver = computed(() => {
     case 'phone':
       return yupResolver(
         yup.object({
-          value: yup.string().required(),
+          value: yup.string().required().min(11).max(11),
         }),
       )
     case 'email':
