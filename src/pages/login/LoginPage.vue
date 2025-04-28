@@ -66,7 +66,7 @@ const resolver = yupResolver(
       .required('Обязательное поле')
       .min(11, 'Номер телефона из 11 символов')
       .max(11, 'Номер телефона из 11 символов'),
-    password: yup.string().required('Обязательное поле').min(6, 'Минимум 6 символов'),
+    password: yup.string().required('Обязательное поле').min(8, 'Минимум 8 символов'),
   }),
 )
 
