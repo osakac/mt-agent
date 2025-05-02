@@ -25,26 +25,15 @@
     <Card>
       <template #content>
         <div class="flex flex-col">
-          <LinkArrow :to="RouteNames.Cabinet">
-            <div class="flex items-center gap-2">
-              <i class="pi pi-file mr-1" style="color: var(--p-sky-500)"></i>
-              <p>Данные</p>
-            </div>
-          </LinkArrow>
-          <Divider />
-          <LinkArrow :to="RouteNames.Cabinet">
-            <div class="flex items-center gap-2">
-              <i class="pi pi-key mr-1" style="color: var(--p-sky-500)"></i>
-              <p>Сменить пароль</p>
-            </div>
-          </LinkArrow>
-          <Divider />
-          <LinkArrow :to="RouteNames.Cabinet" @click.prevent="onLogout">
-            <div class="flex items-center gap-2">
-              <i class="pi pi-sign-out mr-1" style="color: var(--p-sky-500)"></i>
-              <p>Выход из системы</p>
-            </div>
-          </LinkArrow>
+          <template v-for="(link, index) in links" :key="link.title">
+            <LinkArrow :to="link.to" @click="link.fn">
+              <div class="flex items-center gap-2">
+                <i class="pi mr-1 text-sky-500" :class="link.icon"></i>
+                <p>{{ link.title }}</p>
+              </div>
+            </LinkArrow>
+            <Divider v-if="index !== links.length - 1" />
+          </template>
         </div>
       </template>
     </Card>
@@ -63,8 +52,32 @@ const userStore = useUserStore()
 
 const user = userStore.getUser
 
-const onLogout = () => {
+const links = [
+  {
+    title: 'Данные',
+    icon: 'pi-file',
+    to: RouteNames.Cabinet,
+  },
+  {
+    title: 'Статистика',
+    icon: 'pi-chart-bar',
+    to: RouteNames.Cabinet,
+  },
+  {
+    title: 'Сменить пароль',
+    icon: 'pi-key',
+    to: RouteNames.Cabinet,
+  },
+  {
+    title: 'Выход из системы',
+    icon: 'pi-sign-out',
+    to: RouteNames.Cabinet,
+    fn: onLogout,
+  },
+]
+
+function onLogout() {
   router.push({ name: RouteNames.Login })
-  userStore.logout()
+  // userStore.logout()
 }
 </script>
