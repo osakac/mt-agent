@@ -1,11 +1,8 @@
 <template>
-  <RouterLink :to class="relative link-arrow">
+  <RouterLink :to="{ name: to }" class="relative link-arrow">
     <slot></slot>
 
-    <i
-      class="pi pi-angle-right absolute top-1/2 right-0 -translate-y-1/2"
-      style="color: var(--p-sky-500)"
-    />
+    <i class="pi pi-angle-right absolute top-1/2 right-0 -translate-y-1/2 text-sky-500" />
   </RouterLink>
 </template>
 
@@ -26,7 +23,7 @@ defineProps<Props>()
   transition: color 0.2s ease;
 
   &:hover {
-    color: var(--p-sky-500);
+    @apply text-sky-500;
   }
 
   &:not(:first-child) {
